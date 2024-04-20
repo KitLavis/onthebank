@@ -1,3 +1,11 @@
 from django.contrib import admin
+from .models import WatercourseLink
 
-# Register your models here.
+@admin.register(WatercourseLink)
+class WatercourseLinkAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "name1",
+    )
+
+    ordering = ("name1",)
