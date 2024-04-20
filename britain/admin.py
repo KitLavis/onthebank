@@ -8,4 +8,6 @@ class WatercourseLinkAdmin(admin.ModelAdmin):
         "name1",
     )
 
+    search_fields = ['name1']
+
     ordering = ("name1",)
