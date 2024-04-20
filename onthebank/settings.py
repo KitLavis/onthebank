@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'britain',
+    'leaflet',
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
