@@ -1,5 +1,6 @@
 onthebank-venv/
 venv/
+britain/osrivers/
 core.Microsoft*
 core.mongo*
 core.python*
