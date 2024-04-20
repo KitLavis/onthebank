@@ -3,7 +3,7 @@ from .models import WatercourseLink
 
 
 def index(request):
-    watercourse_links = WatercourseLink.objects.all()
+    river_avon = WatercourseLink.objects.filter(name1='River Avon')
     context = {}
-    context['watercourse_links'] = watercourse_links
+    context['river_avon'] = river_avon
     return render(request, 'index.html', context)

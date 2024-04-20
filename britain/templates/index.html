@@ -1,13 +1,24 @@
+{% load geojson_tags %}
+{% load leaflet_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% leaflet_js %}
+    {% leaflet_css %}
     <title>On the Bank</title>
 </head>
 <body>
-    {% for link in watercourse_links %}
-    <p>{{ link.name1 }}</p>
+    {% for stretch in river_avon %}
+    <p>{{ stretch.name1 }}</p>
     {% endfor %}
+    <div>{% leaflet_map "map" callback="map_init" %}</div>
+    <script type="text/javascript">
+        function map_init(map, options) {
+            var area = L.geoJson({{ river_avon.geom|geojsonfeature|safe }}).addTo(map);
+        }
+    </script>
 </body>
 </html>
