@@ -11,13 +11,11 @@
     <title>On the Bank</title>
 </head>
 <body>
-    {% for stretch in river_avon %}
-    <p>{{ stretch.name1 }}</p>
-    {% endfor %}
+    <p>{{ test_link.name1 }}</p>
     <div>{% leaflet_map "map" callback="map_init" %}</div>
     <script type="text/javascript">
-        function map_init(map, options) {
-            var area = L.geoJson({{ river_avon.geom|geojsonfeature|safe }}).addTo(map);
+        function map_init(map) {
+            var area = L.geoJson({{ test_link.geom|geojsonfeature|safe }}).addTo(map);
         }
     </script>
 </body>
