@@ -11,12 +11,19 @@
     <title>On the Bank</title>
 </head>
 <body>
-    <p>{{ test_link.name1 }}</p>
-    <div>{% leaflet_map "map" callback="map_init" %}</div>
+    <!-- <p>{{ test_link.name1 }}</p> -->
+    <div id="map" style="height: 100vh;"></div>
     <script type="text/javascript">
-        function map_init(map) {
-            var area = L.geoJson({{ test_link.geom|geojsonfeature|safe }}).addTo(map);
+        function map_init(map, options) {
+            var geojson_data = {{ geojson_data|safe }};
+            var bounds = L.geoJson(geojson_data).getBounds();
+            map.fitBounds(bounds);
+
+            for (var i = 0; i < geojson_data.features.length; i++) {
+                L.geoJson(geojson_data.features[i].geometry).addTo(map);
+            }
         }
     </script>
+    {% leaflet_map "map" callback="map_init" %}
 </body>
 </html>

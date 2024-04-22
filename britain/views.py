@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.core.serializers import serialize
 from .models import WatercourseLink
 
 
 def index(request):
-    test_link = WatercourseLink.objects.get(identifier='DC6C6B09-67D0-4F01-9089-F4E8C5D0DEBF')
-    context = {}
-    context['test_link'] = test_link
+    river_avon = WatercourseLink.objects.filter(name1='River Avon')
+    geojson_data = serialize('geojson', river_avon, geometry_field='geom')
+    context = {'geojson_data': geojson_data}
     return render(request, 'index.html', context)
