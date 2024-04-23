@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import WatercourseLink
+from .models import Venue
 
-@admin.register(WatercourseLink)
-class WatercourseLinkAdmin(admin.ModelAdmin):
+@admin.register(Venue)
+class VenueAdmin(admin.ModelAdmin):
 
     list_display = (
         "name1",

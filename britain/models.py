@@ -1,8 +1,8 @@
 from django.contrib.gis.db import models
 
 
-class WatercourseLink(models.Model):
-    name1 = models.CharField(max_length=250, null=True, blank=True)
+class Venue(models.Model):
+    name1 = models.CharField(max_length=250)
     identifier = models.CharField(max_length=38)
     startnode = models.CharField(max_length=38)
     endnode = models.CharField(max_length=38)
@@ -10,7 +10,11 @@ class WatercourseLink(models.Model):
     flow = models.CharField(max_length=60)
     fictitious = models.CharField(max_length=5)
     length = models.IntegerField()
-    name2 = models.CharField(max_length=250, null=True, blank=True)
+    name2 = models.CharField(max_length=250)
+    county = models.CharField(max_length=30)
+    angclub = models.CharField(max_length=50)
+    bank = models.CharField(max_length=10)
+    clubsite = models.CharField(max_length=50)
     geom = models.MultiLineStringField(srid=27700)
 
     def __string__(self):

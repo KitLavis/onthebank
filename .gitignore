@@ -1,6 +1,9 @@
 onthebank-venv/
 venv/
 britain/osrivers/
+qgis-data/
+OS OpenMap Local (ESRI Shape File) ST/
+gis-project.qgz
 core.Microsoft*
 core.mongo*
 core.python*

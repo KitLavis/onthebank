@@ -1,9 +1,9 @@
 from pathlib import Path
 from django.contrib.gis.utils import LayerMapping
-from .models import WatercourseLink
+from .models import Venue
 
 # Auto-generated `LayerMapping` dictionary for WatercourseLink model
-watercourselink_mapping = {
+venue_mapping = {
     'name1': 'name1',
     'identifier': 'identifier',
     'startnode': 'startNode',
@@ -13,11 +13,15 @@ watercourselink_mapping = {
     'fictitious': 'fictitious',
     'length': 'length',
     'name2': 'name2',
+    'county': 'County',
+    'angclub': 'angClub',
+    'bank': 'bank',
+    'clubsite': 'clubSite',
     'geom': 'MULTILINESTRING25D',
 }
 
-watercourselink_shp = Path(__file__).resolve().parent / 'osrivers' / 'data' / 'WatercourseLink.shp'
+venue_shp = Path(__file__).resolve().parent / 'qgis-data' / 'somerset' / 'ClevedonFWAC.shp'
 
 def run(verbose=True):
-    lm = LayerMapping(WatercourseLink, watercourselink_shp, watercourselink_mapping, transform=False)
+    lm = LayerMapping(Venue, venue_shp, venue_mapping, transform=False)
     lm.save(strict=True, verbose=verbose)
