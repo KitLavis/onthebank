@@ -2,7 +2,7 @@ from pathlib import Path
 from django.contrib.gis.utils import LayerMapping
 from .models import Venue
 
-# Auto-generated `LayerMapping` dictionary for WatercourseLink model
+# Auto-generated `LayerMapping` dictionary for Venue model
 venue_mapping = {
     'name1': 'name1',
     'identifier': 'identifier',
@@ -20,7 +20,7 @@ venue_mapping = {
     'geom': 'MULTILINESTRING25D',
 }
 
-venue_shp = Path(__file__).resolve().parent / 'qgis-data' / 'somerset' / 'ClevedonFWAC.shp'
+venue_shp = Path(__file__).resolve().parents[1] / 'qgis-data' / 'somerset' / 'WsMAA.shp'
 
 def run(verbose=True):
     lm = LayerMapping(Venue, venue_shp, venue_mapping, transform=False)
