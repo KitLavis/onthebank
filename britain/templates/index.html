@@ -20,7 +20,40 @@
             map.fitBounds(bounds);
 
             for (var i = 0; i < geojson_data.features.length; i++) {
-                L.geoJson(geojson_data.features[i].geometry).addTo(map);
+                var feature = geojson_data.features[i];
+                var geometry = feature.geometry;
+                var properties = feature.properties;
+
+                // Create line layer
+                var lineLayer = L.geoJson(geometry, {
+                    style: function (feature) {
+                        return {
+                            color: 'blue' // Set default color
+                        };
+                    }
+                }).addTo(map);
+
+                // Construct popup content
+                var popupContent = '<strong>Name:</strong> ' + properties.name1 + '<br>' +
+                                   '<strong>Bank to fish from:</strong> ' + properties.bank + '<br>' +
+                                   '<strong>Angling Club:</strong> ' + properties.angclub + '<br>' +
+                                   '<strong>Club Site:</strong> <a href="' + properties.clubsite + '">' + properties.clubsite + '</a>';
+
+                // Bind popup to each line
+                lineLayer.bindPopup(popupContent);
+
+                // Add event listener for click event
+                lineLayer.on('mouseover', function(e) {
+                    e.target.setStyle({
+                        color: 'red' // Change line color when clicked
+                    });
+                });
+
+                lineLayer.on('mouseout', function(e) {
+                    e.target.setStyle({
+                        color: 'blue' // Change line color when clicked
+                    });
+                });
             }
         }
     </script>
