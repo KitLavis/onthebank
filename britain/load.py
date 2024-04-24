@@ -20,7 +20,7 @@ venue_mapping = {
     'geom': 'MULTILINESTRING25D',
 }
 
-venue_shp = Path(__file__).resolve().parents[1] / 'qgis-data' / 'somerset' / 'WsMAA.shp'
+venue_shp = Path(__file__).resolve().parents[1] / 'qgis-data' / 'somerset' / 'somerset.shp'
 
 def run(verbose=True):
     lm = LayerMapping(Venue, venue_shp, venue_mapping, transform=False)
