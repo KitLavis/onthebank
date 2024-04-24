@@ -1,3 +1,4 @@
+from django.db import connection
 from pathlib import Path
 from django.contrib.gis.utils import LayerMapping
 from .models import Venue
@@ -23,5 +24,8 @@ venue_mapping = {
 venue_shp = Path(__file__).resolve().parents[1] / 'qgis-data' / 'somerset' / 'somerset.shp'
 
 def run(verbose=True):
+    with connection.cursor() as cursor:
+        cursor.execute("ALTER SEQUENCE britain_venue_id_seq RESTART WITH 1;")
+    Venue.objects.all().delete()
     lm = LayerMapping(Venue, venue_shp, venue_mapping, transform=False)
     lm.save(strict=True, verbose=verbose)

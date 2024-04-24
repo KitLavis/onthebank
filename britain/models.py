@@ -13,7 +13,7 @@ class Venue(models.Model):
     name2 = models.CharField(max_length=250, null=True, blank=True)
     county = models.CharField(max_length=30)
     angclub = models.CharField(max_length=50)
-    bank = models.CharField(max_length=50)
+    bank = models.CharField(max_length=50, null=True, blank=True)
     clubsite = models.CharField(max_length=50)
     geom = models.MultiLineStringField(srid=27700)
     bream = models.BooleanField(default=False)

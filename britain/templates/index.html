@@ -30,8 +30,10 @@
                         return {
                             color: 'blue' // Set default color
                         };
-                    }
+                    },
                 }).addTo(map);
+
+                lineLayer.originalStyle = lineLayer.options.style;
 
                 // Construct popup content
                 var popupContent = '<strong>Name:</strong> ' + properties.name1 + '<br>' +
@@ -44,15 +46,15 @@
 
                 // Add event listener for click event
                 lineLayer.on('mouseover', function(e) {
+                    e.target.bringToFront();
                     e.target.setStyle({
                         color: 'red' // Change line color when clicked
                     });
                 });
 
                 lineLayer.on('mouseout', function(e) {
-                    e.target.setStyle({
-                        color: 'blue' // Change line color when clicked
-                    });
+                    // Restore default line color and position on mouseout
+                    e.target.setStyle(e.target.originalStyle);
                 });
             }
         }
