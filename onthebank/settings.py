@@ -81,20 +81,24 @@ WSGI_APPLICATION = 'onthebank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'onthebank',
-#         'USER': 'Kit',
-#         'PASSWORD': os.environ.get('DB_PASS'),
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
-}
+# Check if the application is running in a Heroku environment
+if 'DATABASE_URL' in os.environ:
+    # Use Heroku's provided DATABASE_URL environment variable
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
+    }
+else:
+    # Use local development database settings
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'NAME': 'onthebank',
+            'USER': 'Kit',
+            'PASSWORD': os.environ.get('DB_PASS'),
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
