@@ -7,4 +7,4 @@ def index(request):
     venues = Venue.objects.all()
     geojson_data = serialize('geojson', venues, geometry_field='geom')
     context = {'geojson_data': geojson_data}
-    return render(request, 'templates/britain/index.html', context)
+    return render(request, 'index.html', context)
