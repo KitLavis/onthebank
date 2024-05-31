@@ -81,24 +81,25 @@ WSGI_APPLICATION = 'onthebank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Check if the application is running in a Heroku environment
-if 'DATABASE_URL' in os.environ:
-    # Use Heroku's provided DATABASE_URL environment variable
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600)
+# # Check if the application is running in a Heroku environment
+# if 'DATABASE_URL' in os.environ:
+#     # Use Heroku's provided DATABASE_URL environment variable
+#     DATABASES = {
+#         'default': dj_database_url.config(conn_max_age=600)
+#     }
+# else:
+#     # Use local development database settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'd4bpppi1r67vi6',
+        'USER': 'u80mk75tco2n3u',
+        'PASSWORD': os.environ.get('HDB_PASS'),
+        'HOST': 'cav8p52l9arddb.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com',
+        'URI': 'postgres://u80mk75tco2n3u:p7a4765d17cdc75f69b52c244023761f94da1b1112c7d264fbf49350a149601e5@cav8p52l9arddb.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d4bpppi1r67vi6',
+        'PORT': '5432',
     }
-else:
-    # Use local development database settings
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
-            'NAME': 'onthebank',
-            'USER': 'Kit',
-            'PASSWORD': os.environ.get('DB_PASS'),
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
