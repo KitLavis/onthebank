@@ -3,3 +3,7 @@ html {
     width: 100vw;
     overflow-x: hidden;
 }
+
+.header {
+    height: 56px;
+}

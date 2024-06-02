@@ -1,68 +1,64 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% load geojson_tags %}
 {% load leaflet_tags %}
 
 {% block extra_css %}
-{% leaflet_css %}
-{% endblock %}
-
-{% block extra_js %}
-{% leaflet_js %}
+<link rel="stylesheet" href="{% static 'britain/css/britain.css' %}">
 {% endblock %}
 
 {% block content %}
-<div id="map" style="height: 100vh;"></div>
+<div id="map"></div>
 {% endblock %}
 
 {% block postloadjs %}
 <script type="text/javascript">
     console.log("Script is being executed");
     function map_init(map, options) {
-        var geojson_data = {{ geojson_data| safe
-    }};
-    var bounds = L.geoJson(geojson_data).getBounds();
-    map.fitBounds(bounds);
+        var geojson_data = {{ geojson_data| safe}};
+        var bounds = L.geoJson(geojson_data).getBounds();
+        map.fitBounds(bounds);
 
-    for (var i = 0; i < geojson_data.features.length; i++) {
-        var feature = geojson_data.features[i];
-        var geometry = feature.geometry;
-        var properties = feature.properties;
+        for (var i = 0; i < geojson_data.features.length; i++) {
+            var feature = geojson_data.features[i];
+            var geometry = feature.geometry;
+            var properties = feature.properties;
 
-        // Create line layer
-        var lineLayer = L.geoJson(geometry, {
-            style: function (feature) {
-                return {
-                    color: 'blue' // Set default color
-                };
-            },
-        }).addTo(map);
+            // Create line layer
+            var lineLayer = L.geoJson(geometry, {
+                style: function (feature) {
+                    return {
+                        color: 'blue' // Set default color
+                    };
+                },
+            }).addTo(map);
 
-        lineLayer.originalStyle = lineLayer.options.style;
+            lineLayer.originalStyle = lineLayer.options.style;
 
-        // Construct popup content
-        var popupContent = '<strong>Name:</strong> ' + properties.name1 + '<br>' +
-            '<strong>Bank to fish from:</strong> ' + properties.bank + '<br>' +
-            '<strong>Angling Club:</strong> ' + properties.angclub + '<br>' +
-            '<strong>Club Site:</strong> <a href="' + properties.clubsite + '">' + properties.clubsite + '</a>';
+            // Construct popup content
+            var popupContent = '<strong>Name:</strong> ' + properties.name1 + '<br>' +
+                '<strong>Bank to fish from:</strong> ' + properties.bank + '<br>' +
+                '<strong>Angling Club:</strong> ' + properties.angclub + '<br>' +
+                '<strong>Club Site:</strong> <a href="' + properties.clubsite + '">' + properties.clubsite + '</a>';
 
-        // Bind popup to each line
-        lineLayer.bindPopup(popupContent);
+            // Bind popup to each line
+            lineLayer.bindPopup(popupContent);
 
-        // Add event listener for click event
-        lineLayer.on('mouseover', function (e) {
-            e.target.bringToFront();
-            e.target.setStyle({
-                color: 'red' // Change line color when clicked
+            // Add event listener for click event
+            lineLayer.on('mouseover', function (e) {
+                e.target.bringToFront();
+                e.target.setStyle({
+                    color: 'red' // Change line color when clicked
+                });
             });
-        });
 
-        lineLayer.on('mouseout', function (e) {
-            // Restore default line color and position on mouseout
-            e.target.setStyle(e.target.originalStyle);
-        });
-    }
-    }
+            lineLayer.on('mouseout', function (e) {
+                // Restore default line color and position on mouseout
+                e.target.setStyle(e.target.originalStyle);
+            });
+        }
+    };
 </script>
 {% leaflet_map "map" callback="map_init" %}
 {% endblock %}

@@ -12,7 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- SEO -->
-    <meta name="description" content="On the Bank is a site to help new anglers get into fishing, and to help experienced anglers find their next adventure">
+    <meta name="description"
+        content="On the Bank is a site to help new anglers get into fishing, and to help experienced anglers find their next adventure">
     <meta name="keywords" content="britain, angling, fishing, river, lake">
     <meta name="author" content="Kit Lavis">
     {% endblock %}
@@ -26,6 +27,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% leaflet_css %}
     {% endblock %}
 
     {% block extra_css %}
@@ -43,6 +45,7 @@
         </script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/cd67891a35.js" crossorigin="anonymous"></script>
+    {% leaflet_js %}
     {% endblock %}
 
     {% block extra_js %}
@@ -57,7 +60,7 @@
     <title>On the Bank</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column">
     <!-- header -->
     <header>
         <!-- Image and text -->
@@ -88,45 +91,8 @@
 
     {% block content %}
     {% endblock %}
-
-    <footer class="footer mt-auto">
-        <div class="row footer-row text-center">
-            <div class="col-4 my-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="View all products">All Products</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="View all music on sale">Music</a></li>
-                </ul>
-            </div>
-            <div class="col-4 my-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="View all the artists we work with">Artists</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="View testimonials from our collaborators">Testimonials</a></li>
-                </ul>
-            </div>
-            <div class="col-4 my-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="Get in contact">Contact</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"
-                            aria-label="View our privacy policy (opens in a new tab)" target="_blank"
-                            rel="noopener nofollow">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row footer-row">
-            <div class="col-12 col-md-10 col-lg-6 offset-lg-1 order-lg-last">
-                <p>something</p>
-            </div>
-            <div class="col-12 col-lg-3 offset-lg-1 pr-0 align-self-end">
-                <p>&copy; On the Bank 2024</p>
-            </div>
-        </div>
-    </footer>
-
+    {% block footer %}
+    {% endblock %}
     {% block postloadjs %}
     {% endblock %}
 </body>
