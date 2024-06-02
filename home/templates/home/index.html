@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-auto offset-1 offset-md-2">
+            <h2 class="support mt-5">
+                Home page test
+            </h2>
+            <a class="btn rounded my-3" href="{% url 'britain' %}" aria-label="View all products">See the map</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
