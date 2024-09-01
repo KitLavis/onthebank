@@ -6,16 +6,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="container main-content">
-    <div class="row">
-        <div class="col-auto offset-1 offset-md-2">
-            <h2 class="support mt-5">
-                Home page test
-            </h2>
-            <a class="btn rounded my-3" href="{% url 'britain' %}" aria-label="View all products">See the map</a>
+<div class="overlay"></div>
+    <div class="container-fluid main-content">
+        <div class="opacity">
+            <div class="row">
+                <div class="col-auto offset-1 offset-md-2">
+                    <h2 class="hero-text mt-5">
+                        Make the most of the river season
+                    </h2>
+                    <a class="btn rounded my-3" href="{% url 'britain' %}" aria-label="View all products">Find a bank near you</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
 {% endblock %}
 
 {% block footer %}

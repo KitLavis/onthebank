@@ -1,3 +1,27 @@
 .main-content {
     min-height: 100vh;
 }
+
+.overlay {
+    background-image: url("/static/images/otb-hero.png");
+    background-size: cover; /* or 'contain' depending on your needs */
+    background-position: center;
+    position: fixed; /* This keeps the background fixed */
+    width: 100vw; /* or set to specific width */
+    height: 100vh; /* or specific height */
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.opacity {
+    position: absolute;
+    z-index: 10;
+}
+
+.no-blur {
+    filter: blur(0px);
+}
+
+div > .hero-text {
+    color: white;
+}
