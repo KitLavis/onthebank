@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
+<div class="container main-content">
     <div class="row">
         <div class="col-auto offset-1 offset-md-2">
             <h2 class="support mt-5">
